@@ -1,0 +1,31 @@
+# Secrets: .env holds the Kaggle API token
+.env
+.env.*
+!.env.example
+
+# Python virtual environment
+.venv/
+venv/
+env/
+
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Downloaded model files and training logs (re-fetched by app.py from Kaggle)
+model/
+
+# Kaggle CLI credentials and downloads
+kaggle.json
+*.zip
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+*.swp
