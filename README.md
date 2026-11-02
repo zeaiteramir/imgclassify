@@ -129,7 +129,7 @@ source .venv/bin/activate
 
 ```bash
 python -m pip install --upgrade pip
-python -m pip install streamlit numpy pandas tensorflow pillow python-dotenv kaggle
+python -m pip install -r requirements.txt
 ```
 
 **4. Check the installation**
@@ -137,6 +137,8 @@ python -m pip install streamlit numpy pandas tensorflow pillow python-dotenv kag
 ```bash
 python -c "import streamlit, numpy, pandas, tensorflow, PIL, dotenv, kaggle; print('TensorFlow', tensorflow.__version__)"
 ```
+
+Streamlit Community Cloud installs the packages listed in the repository's root `requirements.txt` when it deploys the app. If deployment previously failed during import, commit and push this file, then reboot the app from its Streamlit Cloud settings.
 
 ## Configuration (Kaggle token)
 
@@ -147,6 +149,14 @@ export KAGGLE_API_TOKEN=your_token_here
 ```
 
 `python-dotenv` reads this file on startup. VS Code also loads it in terminals because [.vscode/settings.json](.vscode/settings.json) sets `python.terminal.useEnvFile` to `true`.
+
+For Streamlit Community Cloud, add the token as a top-level secret in the app's **Settings → Secrets**:
+
+```toml
+KAGGLE_API_TOKEN = "your_token_here"
+```
+
+Streamlit exposes top-level secrets as environment variables, which the Kaggle CLI uses to download the model. Never commit the token or a local `.streamlit/secrets.toml` file.
 
 To get a token, sign in to Kaggle and create an API token from your account settings.
 
